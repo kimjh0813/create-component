@@ -1,9 +1,9 @@
 {
   "name": "react-styled-create-component",
-  "displayName": "CreateComponent",
+  "displayName": "react create component(with styled-components)",
   "description": "",
   "publisher": "Kimjonghun",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.83.0"
   },
@@ -23,7 +23,7 @@
     "commands": [
       {
         "command": "createComponent",
-        "title": "Create Component"
+        "title": "Create Component(with styled-components)"
       }
     ],
     "menus": {
