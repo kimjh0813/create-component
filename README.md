@@ -1,7 +1,10 @@
 # createcomponent README
 
+Create with react + styled-component
+
 After right-clicking in the Explorer, select 'Create Component' from the menu, then enter the name in the input field to generate the component.
 
+![ㅎ import failed](https://github.com/kimjh0813/create-component/blob/main/public/react-create-component.gif)
 
 In your `settings.json` file, you can add the following configuration for customizing component creation:
 
