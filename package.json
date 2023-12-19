@@ -1,7 +1,8 @@
 {
-  "name": "createcomponent",
+  "name": "react-styled-create-component",
   "displayName": "CreateComponent",
   "description": "",
+  "publisher": "Kimjonghun",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.83.0"
