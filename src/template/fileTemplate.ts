@@ -34,7 +34,7 @@ const componentFileTemplate = (
       : `export default function ${componentName}({}: ${
           isUseTypeFile ? `T.${componentName}` : componentName
         }Props) {`
-  } 
+  }
   return <${tagName}>${componentName}</${tagName}>;
 }${isUseArrowFunction ? `\n\nexport default ${componentName};\n` : "\n"}`;
 
