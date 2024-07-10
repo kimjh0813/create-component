@@ -8,10 +8,12 @@ After right-clicking in the Explorer, select 'Create Component' from the menu, t
 
 In your `settings.json` file, you can add the following configuration for customizing component creation:
 
-| Setting              | Description                                              | Default Value |
-|----------------------|----------------------------------------------------------|---------------|
-| `useTypeFile`        | It determines whether to include a separate Type file (type.ts) for the component props definitions. | `false`       |
-| `includeComponentName`| Deciding whether to include the component name in the filenames of styled and type files. | `false` |
+| Setting                | Description                                                                                          | Default Value |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- | ------------- |
+| `useTypeFile`          | It determines whether to include a separate Type file (type.ts) for the component props definitions. | `false`       |
+| `useStyleFile`         | It determines whether to use a separate Style file (styled.ts) for the component.                    | `true`        |
+| `useArrowFunction`     | true => const Component = () => {}, false => function Component() {}                                 | `true`        |
+| `includeComponentName` | Deciding whether to include the component name in the filenames of styled and type files.            | `false`       |
 
 ### Example:
 
@@ -22,3 +24,4 @@ In your `settings.json` file, you can add the following configuration for custom
     "includeComponentName": true
   }
 }
+```

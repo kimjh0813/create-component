@@ -3,7 +3,7 @@
   "displayName": "react create component(with styled-components)",
   "description": "",
   "publisher": "Kimjonghun",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.83.0"
   },
