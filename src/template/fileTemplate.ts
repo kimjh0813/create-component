@@ -31,12 +31,12 @@ const componentFileTemplate = (
       ? `const ${componentName} = ({}: ${
           isUseTypeFile ? `T.${componentName}` : componentName
         }Props) => {`
-      : `export default function ({}: ${
+      : `export default function ${componentName}({}: ${
           isUseTypeFile ? `T.${componentName}` : componentName
         }Props) {`
   } 
   return <${tagName}>${componentName}</${tagName}>;
-};${isUseArrowFunction ? `\n\nexport default ${componentName};\n` : "\n"}`;
+}${isUseArrowFunction ? `\n\nexport default ${componentName};\n` : "\n"}`;
 
   return content;
 };
