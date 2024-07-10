@@ -32,10 +32,9 @@ export function activate(context: vscode.ExtensionContext) {
       const workspaceConfig =
         vscode.workspace.getConfiguration("createComponent");
 
-      const isUseTypeFile = vscode.workspace
-        .getConfiguration("createComponent")
-        .get("useTypeFile", false);
-
+      const isUseArrowFunction = workspaceConfig.get("useArrowFunction", true);
+      const isUseStyleFile = workspaceConfig.get("useStyleFile", true);
+      const isUseTypeFile = workspaceConfig.get("useTypeFile", false);
       const isIncludeComponentName = workspaceConfig.get(
         "includeComponentName",
         false
@@ -73,10 +72,15 @@ export function activate(context: vscode.ExtensionContext) {
             componentFileTemplate(
               componentName,
               isIncludeComponentName,
-              isUseTypeFile
+              isUseTypeFile,
+              isUseStyleFile,
+              isUseArrowFunction
             )
           );
-          fs.writeFileSync(filePath.style, styledFileTemplate());
+
+          if (isUseStyleFile) {
+            fs.writeFileSync(filePath.style, styledFileTemplate());
+          }
 
           if (isUseTypeFile) {
             fs.writeFileSync(filePath.type, typeFileTemplate(componentName));

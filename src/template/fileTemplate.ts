@@ -1,9 +1,5 @@
-const componentName = () => {
-  return;
-};
-
 const indexFileTemplate = (componentName: string) => {
-  const content = `export { default } from "./${componentName}"`;
+  const content = `export { default } from './${componentName}';\n`;
 
   return content;
 };
@@ -11,41 +7,50 @@ const indexFileTemplate = (componentName: string) => {
 const componentFileTemplate = (
   componentName: string,
   isIncludeComponentName: boolean,
-  isUseTypeFile: boolean
+  isUseTypeFile: boolean,
+  isUseStyleFile: boolean,
+  isUseArrowFunction: boolean
 ) => {
-  const content = `import * as S from "./${
-    isIncludeComponentName ? `${componentName}.styled` : "styled"
-  }";
-${
-  isUseTypeFile
-    ? `import * as T from "./${
-        isIncludeComponentName ? `${componentName}.type` : "type"
-      }";`
-    : `\ninterface ${componentName}Props {}`
-}
-\nconst ${componentName} = ({}: ${
-    isUseTypeFile ? `T.${componentName}` : componentName
-  }Props) => {
-  return (
-    <S.Container>${componentName}</S.Container>    
-  );
-};
-  
-export default ${componentName};`;
+  const tagName = isUseStyleFile ? "S.Container" : "div";
+
+  const content = `${
+    isUseStyleFile
+      ? `import * as S from './${
+          isIncludeComponentName ? `${componentName}.styled` : "styled"
+        }';\n`
+      : ""
+  }${
+    isUseTypeFile
+      ? `import * as T from './${
+          isIncludeComponentName ? `${componentName}.type` : "type"
+        }';`
+      : `${isUseStyleFile ? "\n" : ""}interface ${componentName}Props {}`
+  }
+\n${
+    isUseArrowFunction
+      ? `const ${componentName} = ({}: ${
+          isUseTypeFile ? `T.${componentName}` : componentName
+        }Props) => {`
+      : `export default function ({}: ${
+          isUseTypeFile ? `T.${componentName}` : componentName
+        }Props) {`
+  } 
+  return <${tagName}>${componentName}</${tagName}>;
+};${isUseArrowFunction ? `\n\nexport default ${componentName};\n` : "\n"}`;
 
   return content;
 };
 
 const styledFileTemplate = () => {
-  const content = `import styled from "styled-components";
+  const content = `import styled from 'styled-components';
 
-export const Container = styled.div\`\`;`;
+export const Container = styled.div\`\`;\n`;
 
   return content;
 };
 
 const typeFileTemplate = (componentName: string) => {
-  const content = `export interface ${componentName}Props {}`;
+  const content = `export interface ${componentName}Props {}\n`;
 
   return content;
 };
