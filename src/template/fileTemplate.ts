@@ -1,5 +1,10 @@
-const indexFileTemplate = (componentName: string) => {
-  const content = `export { default } from './${componentName}';\n`;
+const indexFileTemplate = (
+  componentName: string,
+  isUseDefaultExport: boolean
+) => {
+  const content = `export ${
+    isUseDefaultExport ? "{ default }" : "*"
+  } from './${componentName}';\n`;
 
   return content;
 };
@@ -9,7 +14,8 @@ const componentFileTemplate = (
   isIncludeComponentName: boolean,
   isUseTypeFile: boolean,
   isUseStyleFile: boolean,
-  isUseArrowFunction: boolean
+  isUseArrowFunction: boolean,
+  isUseDefaultExport: boolean
 ) => {
   const tagName = isUseStyleFile ? "S.Container" : "div";
 
@@ -28,15 +34,21 @@ const componentFileTemplate = (
   }
 \n${
     isUseArrowFunction
-      ? `const ${componentName} = ({}: ${
+      ? `${!isUseDefaultExport ? "export " : ""}const ${componentName} = ({}: ${
           isUseTypeFile ? `T.${componentName}` : componentName
         }Props) => {`
-      : `export default function ${componentName}({}: ${
+      : `export ${
+          isUseDefaultExport ? "default " : ""
+        }function ${componentName}({}: ${
           isUseTypeFile ? `T.${componentName}` : componentName
         }Props) {`
   }
   return <${tagName}>${componentName}</${tagName}>;
-}${isUseArrowFunction ? `\n\nexport default ${componentName};\n` : "\n"}`;
+}${
+    isUseArrowFunction && isUseDefaultExport
+      ? `\n\nexport default ${componentName};\n`
+      : "\n"
+  }`;
 
   return content;
 };

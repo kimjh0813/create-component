@@ -13,6 +13,7 @@ In your `settings.json` file, you can add the following configuration for custom
 | `useTypeFile`          | It determines whether to include a separate Type file (type.ts) for the component props definitions. | `false`       |
 | `useStyleFile`         | It determines whether to use a separate Style file (styled.ts) for the component.                    | `true`        |
 | `useArrowFunction`     | true => const Component = () => {}, false => function Component() {}                                 | `true`        |
+| `useDefaultExport`     | setting that determines whether to use export or export default.                                     | `true`        |
 | `includeComponentName` | Deciding whether to include the component name in the filenames of styled and type files.            | `false`       |
 
 ### Example:
@@ -21,7 +22,9 @@ In your `settings.json` file, you can add the following configuration for custom
 {
   "createComponent": {
     "useTypeFile": true,
-    "includeComponentName": true
+    "useStyleFile": false,
+    "useArrowFunction": false,
+    "useDefaultExport": false
   }
 }
 ```
